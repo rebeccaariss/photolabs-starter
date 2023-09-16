@@ -6,7 +6,7 @@ const PhotoListItem = (props) => {
   const { id, location, imageSource, username, profile } = props.sampleData;
 
   return (
-    <article key={id} className="photo-list__item">
+    <article id={id} className="photo-list__item">
       <img src={imageSource} className="photo-list__image" alt="main-photo"/>
       <div className="photo-list__user-details">
         <img src={profile} className="photo-list__user-profile" alt="profile-picture"/>
