@@ -5,10 +5,11 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { id, location, urls, user } = props.sampleData;
+  const { favouritePhotos, showFavourites } = props; // state management props
 
   return (
     <li id={id} className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton id={id} favouritePhotos={favouritePhotos} showFavourites={showFavourites}/>
       <img src={urls.regular} className="photo-list__image" alt="main-photo"/>
       <div className="photo-list__user-details">
         <img src={user.profile} className="photo-list__user-profile" alt="profile-picture"/>
