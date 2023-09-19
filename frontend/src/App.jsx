@@ -2,6 +2,8 @@ import React from 'react';
 
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
+import topics from 'mocks/topics';
+import photos from 'mocks/photos';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -14,7 +16,7 @@ const App = () => {
           <PhotoListItem key={index} sampleData={photo} />
         ))
       } */}
-      <HomeRoute />
+      <HomeRoute topics={topics} photos={photos}/>
     </div>
   );
 };
