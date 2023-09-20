@@ -20,8 +20,8 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  margin-left: 16px;
-  margin-top: 16px;
+  margin-left: 3px;
+  margin-top: 1px;
 }
 
 .photo-details-modal__images {
@@ -31,14 +31,12 @@
 
 .photo-details-modal__image {
   max-width: 95%;
-  border-radius: 8px;
 }
 
 .photo-details-modal__top-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 16px;
   margin-top: 8px;
   align-items: center;
 }
@@ -48,11 +46,16 @@
   font-size: 16px;
 }
 
+.photo-list__user-location {
+  font-weight: normal;
+}
+
 .photo-details-modal__header {
   font-size: 18px;
   font-weight: 500;
   color: #1e1e1e;
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 24px;
+  margin-left: 36px;
   width: 90%;
 }
