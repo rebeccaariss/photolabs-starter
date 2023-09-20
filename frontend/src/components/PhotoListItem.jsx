@@ -6,12 +6,12 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = (props) => {
   const { id, location, urls, user } = props.sampleData;
   const { favouritePhotos, showFavourites } = props; // state management props for favourites
-  const { showSelected } = props; // state management prop (function) for modal
+  const { showModal } = props; // state management prop (function) for modal
 
   return (
     <li id={id} className="photo-list__item">
       <PhotoFavButton id={id} favouritePhotos={favouritePhotos} showFavourites={showFavourites}/>
-      <img src={urls.regular} className="photo-list__image" alt="main-photo" onClick={() => showSelected(id)}/>
+      <img src={urls.regular} className="photo-list__image" alt="main-photo" onClick={() => showModal(id)}/>
       <div className="photo-list__user-details">
         <img src={user.profile} className="photo-list__user-profile" alt="profile-picture"/>
         <div className="photo-list__user-info">
