@@ -15,7 +15,8 @@ const App = () => {
       topicData
     },
     showModal,
-    showFavourites
+    showFavourites,
+    getPhotosByTopics
   } = useApplicationData();
 
   return (
@@ -25,15 +26,17 @@ const App = () => {
         photos={photoData} 
         favouritePhotos={favouritePhotos} 
         showFavourites={showFavourites} 
-        showModal={showModal}/>
-        
+        showModal={showModal}
+        getPhotosByTopics={getPhotosByTopics}
+      />
       { modalState && 
         <PhotoDetailsModal 
           photos={photoData} 
           showModal={showModal} 
           selectedPhoto={selectedPhoto} 
           favouritePhotos={favouritePhotos} 
-          showFavourites={showFavourites}/>
+          showFavourites={showFavourites}
+        />
       }
     </div>
   );

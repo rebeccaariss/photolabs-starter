@@ -6,7 +6,8 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 };
 
 function reducer(state, action) {
@@ -50,6 +51,12 @@ function reducer(state, action) {
         topicData: action.payload 
       };
 
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return { 
+        ...state, 
+        selectedTopic: action.payload 
+      };
+
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
@@ -61,7 +68,8 @@ function useApplicationData() {
     modalState: false,
     favouritePhotos: [],
     photoData: [],
-    topicData: []
+    topicData: [],
+    selectedTopic: null
   });
 
   useEffect(() => {
@@ -75,6 +83,14 @@ function useApplicationData() {
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, []);
+
+  useEffect(() => {
+    if (state.selectedTopic !== null) {
+      fetch(`/api/topics/photos/${state.selectedTopic}`)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    }
+  }, [state.selectedTopic]);
 
   console.log(process.env.REACT_APP_API_SERVER);
 
@@ -104,10 +120,15 @@ function useApplicationData() {
     }
   };
 
+  const getPhotosByTopics = (topic) => {
+    dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: topic });
+  };
+
   return {
     state,
     showModal,
-    showFavourites
+    showFavourites,
+    getPhotosByTopics
   };
 };
 
