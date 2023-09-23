@@ -1,10 +1,12 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
 };
 
 function reducer(state, action) {
@@ -36,6 +38,18 @@ function reducer(state, action) {
         modalState: action.payload
       };
 
+    case ACTIONS.SET_PHOTO_DATA:
+      return { 
+        ...state, 
+        photoData: action.payload 
+      };
+
+    case ACTIONS.SET_TOPIC_DATA:
+      return { 
+        ...state, 
+        topicData: action.payload 
+      };
+
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
@@ -45,8 +59,24 @@ function useApplicationData() {
   const [ state, dispatch ] = useReducer(reducer, {
     selectedPhoto: null,
     modalState: false,
-    favouritePhotos: []
+    favouritePhotos: [],
+    photoData: [],
+    topicData: []
   });
+
+  useEffect(() => {
+    fetch(`/api/photos`)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  }, []);
+
+  useEffect(() => {
+    fetch(`/api/topics`)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+  }, []);
+
+  console.log(process.env.REACT_APP_API_SERVER);
 
   const renderModal = (id) => {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: true });
