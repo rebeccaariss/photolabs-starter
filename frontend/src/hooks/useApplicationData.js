@@ -109,14 +109,9 @@ function useApplicationData() {
 
   const showFavourites = (id) => {
     if (state.favouritePhotos.includes(id)) {
-      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: id }); // if the id is 
-      // already present in favouritePhotos array, this creates a new array with all photos that
-      // do not match the id in question, effectively updating state.
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: id });
     } else {
-      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id }); // if the id is not yet included in the
-      // favouritePhotos array, the spread operator (...) copies the existing state array and
-      // re-establishes state with the existing values and the additional id on call to
-      // showFavourites. (call comes from onClick handler in PhotoFavButton component).
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: id });
     }
   };
 
