@@ -92,8 +92,6 @@ function useApplicationData() {
     }
   }, [state.selectedTopic]);
 
-  console.log(process.env.REACT_APP_API_SERVER);
-
   const renderModal = (id) => {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: true });
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: id });
