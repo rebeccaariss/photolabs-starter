@@ -7,6 +7,9 @@ PhotoLabs is a single-page application (SPA) built with ⚛️ React ⚛️ as a
 - Requests are made to the API over HTTP in JSON format
 
 ## Preview
+**Demo: Overview of Features**
+
+!["App navigation demo: photos, topics, likes"](docs/demo.gif)
 
 ## Features
 - Users can like a photo by clicking the ❤️ icon. A notification will be displayed to indicate that the user has liked photos.
