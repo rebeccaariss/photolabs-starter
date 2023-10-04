@@ -127,6 +127,7 @@ function useApplicationData() {
   const getPhotosByFavourites = (favouritePhotos) => {
     console.log("You passed the props correctly!")
     dispatch({ type: ACTIONS.GET_PHOTOS_BY_FAVOURITES, payload: favouritePhotos })
+    console.log(favouritePhotos)
   };
 
   return {
