@@ -2,6 +2,7 @@ import React from 'react';
 import useApplicationData from './hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import FavouritesView from 'routes/FavouritesView';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
@@ -12,25 +13,36 @@ const App = () => {
       modalState, 
       favouritePhotos,
       photoData,
-      topicData
+      topicData,
+      favouritesViewState
     },
     showModal,
     showFavourites,
     getPhotosByTopics,
-    getPhotosByFavourites
+    getPhotosByFavourites,
+    showFavouritesView
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute 
-        topics={topicData} 
-        photos={photoData} 
-        favouritePhotos={favouritePhotos} 
-        showFavourites={showFavourites} 
-        showModal={showModal}
-        getPhotosByTopics={getPhotosByTopics}
-        getPhotosByFavourites={getPhotosByFavourites}
-      />
+      { favouritesViewState ? 
+        <FavouritesView 
+          favouritePhotos={favouritePhotos}
+          showFavourites={showFavourites}
+          showModal={showModal}
+        />
+        :
+        <HomeRoute 
+          topics={topicData} 
+          photos={photoData} 
+          favouritePhotos={favouritePhotos} 
+          showFavourites={showFavourites} 
+          showModal={showModal}
+          getPhotosByTopics={getPhotosByTopics}
+          getPhotosByFavourites={getPhotosByFavourites}
+          showFavouritesView={showFavouritesView}
+        />
+      }
       { modalState && 
         <PhotoDetailsModal 
           photos={photoData} 

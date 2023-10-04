@@ -8,7 +8,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
-  GET_PHOTOS_BY_FAVOURITES: 'GET_PHOTOS_BY_FAVOURITES'
+  GET_PHOTOS_BY_FAVOURITES: 'GET_PHOTOS_BY_FAVOURITES',
+  SHOW_FAVOURITES_VIEW: 'SHOW_FAVOURITES_VIEW'
 };
 
 function reducer(state, action) {
@@ -64,6 +65,12 @@ function reducer(state, action) {
         favouritePhotos: action.payload
       };
 
+    case ACTIONS.SHOW_FAVOURITES_VIEW:
+      return {
+        ...state,
+        favouritesViewState: !state.favouritesViewState
+      }
+
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
@@ -76,7 +83,8 @@ function useApplicationData() {
     favouritePhotos: [],
     photoData: [],
     topicData: [],
-    selectedTopic: null
+    selectedTopic: null,
+    favouritesViewState: false
   });
 
   useEffect(() => {
@@ -125,9 +133,11 @@ function useApplicationData() {
   };
 
   const getPhotosByFavourites = (favouritePhotos) => {
-    console.log("You passed the props correctly!")
     dispatch({ type: ACTIONS.GET_PHOTOS_BY_FAVOURITES, payload: favouritePhotos })
-    console.log(favouritePhotos)
+  };
+
+  const showFavouritesView = () => {
+    dispatch({ type: ACTIONS.SHOW_FAVOURITES_VIEW })
   };
 
   return {
@@ -135,7 +145,8 @@ function useApplicationData() {
     showModal,
     showFavourites,
     getPhotosByTopics,
-    getPhotosByFavourites
+    getPhotosByFavourites,
+    showFavouritesView
   };
 };
 
