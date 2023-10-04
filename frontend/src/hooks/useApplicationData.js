@@ -7,7 +7,8 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  GET_PHOTOS_BY_FAVOURITES: 'GET_PHOTOS_BY_FAVOURITES'
 };
 
 function reducer(state, action) {
@@ -55,6 +56,12 @@ function reducer(state, action) {
       return { 
         ...state, 
         selectedTopic: action.payload 
+      };
+
+    case ACTIONS.GET_PHOTOS_BY_FAVOURITES:
+      return {
+        ...state,
+        favouritePhotos: action.payload
       };
 
     default:
@@ -117,11 +124,17 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: topic });
   };
 
+  const getPhotosByFavourites = (favouritePhotos) => {
+    console.log("You passed the props correctly!")
+    dispatch({ type: ACTIONS.GET_PHOTOS_BY_FAVOURITES, payload: favouritePhotos })
+  };
+
   return {
     state,
     showModal,
     showFavourites,
-    getPhotosByTopics
+    getPhotosByTopics,
+    getPhotosByFavourites
   };
 };
 
