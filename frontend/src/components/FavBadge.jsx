@@ -5,7 +5,7 @@ import '../styles/FavBadge.scss';
 
 const FavBadge = ({ isFavPhotoExist, getPhotosByFavourites, favouritePhotos, showFavouritesView }) => {
   return (
-    <div className='fav-badge' onClick={() => showFavouritesView()}>
+    <div className='fav-badge'>
       <FavIcon displayAlert={!!isFavPhotoExist} selected={true}/>
     </div>
   ) 
