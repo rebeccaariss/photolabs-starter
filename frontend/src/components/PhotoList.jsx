@@ -1,5 +1,6 @@
 import React from 'react';
 import PhotoListItem from './PhotoListItem';
+import Loading from './Loading';
 
 import '../styles/PhotoList.scss';
 
@@ -19,6 +20,7 @@ const PhotoList = (props) => {
   return (
     <ul className="photo-list">
       { filteredPhotos.map(photo => <PhotoListItem key={photo.id} sampleData={photo} favouritePhotos={favouritePhotos} showFavourites={showFavourites} showModal={showModal}/>) }
+      {/* { filteredPhotos.map(photo => <Loading key={photo.id}/>) } */}
     </ul>
   );
 };
